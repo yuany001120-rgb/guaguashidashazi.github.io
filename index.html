@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>你的思维适合学哪个小语种？</title>
+<style>
+:root{--bg:#f7efe1;--card:#fffaf0;--ink:#39291f;--muted:#8a7867;--accent:#b96b43;--dark:#613b2a;--line:#eadcc8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+.wrap{max-width:720px;margin:auto;padding:22px 16px 50px}
+.brand{font-size:13px;color:var(--muted);letter-spacing:2px;font-weight:bold}
+.hero{text-align:center;padding:28px 5px}
+.emoji{font-size:40px}
+.eyebrow{display:inline-block;background:#efe0cb;border-radius:30px;padding:4px 13px;font-size:12px}
+h1{font-size:clamp(30px,7vw,44px);line-height:1.25;margin:16px 0}
+h1 span{color:var(--accent)}
+.lead{color:var(--muted);font-size:14px}
+.chips{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:18px}
+.chip,.tag{background:#f0e2cf;color:#805339;border-radius:30px;padding:5px 11px;font-size:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:21px;margin:15px 0;box-shadow:0 6px 20px #5d3d170b}
+h2{font-size:20px;margin:0 0 12px}
+ul{padding-left:21px}
+.small{font-size:12px;color:var(--muted)}
+.notice{background:#f6ecdd;padding:12px;border-radius:12px;font-size:12px;color:var(--muted)}
+button{font:inherit;cursor:pointer}
+.primary{background:linear-gradient(110deg,var(--accent),var(--dark));color:white;border:0;border-radius:30px;padding:12px 22px;font-weight:bold}
+.secondary{background:#fffaf0;color:#6d5746;border:1px solid var(--line);border-radius:30px;padding:10px 17px;font-weight:bold}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px}
+.hidden{display:none!important}
+.progress-head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:9px}
+.track{height:7px;background:#e7dac8;border-radius:10px;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,#d9a078,#8e5438);transition:width .2s}
+.qnum{color:var(--accent);font-size:12px;font-weight:bold;margin-top:24px}
+.question{font-size:21px;line-height:1.45;margin:8px 0 17px}
+.options{display:grid;gap:9px}
+.option{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff8eb;color:var(--ink)}
+.option.selected{border-color:var(--accent);background:#f6e4d4;box-shadow:inset 0 0 0 1px var(--accent)}
+.letter{flex:0 0 25px;height:25px;border-radius:8px;background:#f0e4d2;display:grid;place-items:center;font-size:12px;font-weight:bold}
+.selected .letter{background:var(--accent);color:white}
+.otext{font-size:14px}
+.result-title{text-align:center}
+.result-title h2{font-size:29px}
+.rankrow{display:grid;grid-template-columns:105px 1fr 35px;gap:8px;align-items:center;margin:14px 0;font-size:13px}
+.rankname{font-weight:bold}
+.rankbar{height:9px;background:#e9ddcc;border-radius:10px;overflow:hidden}
+.rankfill{height:100%;background:linear-gradient(90deg,#d8a078,#865039);border-radius:10px}
+.ranknum{text-align:right;color:#8a715c;font-weight:bold}
+.tag{display:inline-block;margin:4px}
+.result-card p,.result-card li{font-size:14px;color:#6e5b4b}
+.footer{text-align:center;color:#9b8875;font-size:11px;margin-top:25px}
+@media(max-width:480px){.panel{padding:17px 14px}.question{font-size:19px}.rankrow{grid-template-columns:88px 1fr 30px}.actions button{padding:10px 13px}}
+@media print{.actions,.result-actions,#quiz,#intro{display:none!important}#result{display:block!important}body{background:white}.panel{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="brand">☕ 马克杯 · 思维测试</div>
+
+<section id="intro">
+  <div class="hero">
+    <div class="emoji">🧠 🌍</div>
+    <div class="eyebrow">PERSONALITY × LANGUAGE</div>
+    <h1>你的思维，<br><span>适合学哪门小语种？</span></h1>
+    <p class="lead">25道情境选择题，探索你的思维方式、表达偏好与语言学习风格。</p>
+    <div class="chips">
+      <span class="chip">⏱ 6—8分钟</span>
+      <span class="chip">📝 25道题</span>
+      <span class="chip">✨ 即时出结果</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>开始之前</h2>
+    <ul class="small">
+      <li>选择最接近真实自己的答案，不必挑看起来最优秀的选项。</li>
+      <li>没有标准答案，凭第一反应作答即可。</li>
+      <li>最终生成语言匹配TOP 5、思维画像和学习建议。</li>
+    </ul>
+    <div class="notice">这是一份趣味自我探索测评，并非经过科学验证的心理量表。兴趣、学习环境和练习同样会影响语言学习效果。</div>
+    <div class="actions">
+      <span class="small">准备好了吗？</span>
+      <button class="primary" onclick="startQuiz()">开始测试 →</button>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="hidden">
+  <div class="panel">
+    <div class="progress-head">
+      <span>☕ 马克杯 · 思维测试</span>
+      <span id="counter">01 / 25</span>
+    </div>
+    <div class="track"><div id="progress" class="bar"></div></div>
+    <div id="qnum" class="qnum"></div>
+    <div id="question" class="question"></div>
+    <div id="options" class="options"></div>
+    <div class="actions">
+      <button class="secondary" id="prev" onclick="move(-1)">← 上一题</button>
+      <button class="primary" id="next" onclick="move(1)">下一题 →</button>
+    </div>
+    <p class="small">答案仅保存在当前页面，不会发送到服务器。</p>
+  </div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="panel result-title">
+    <div class="emoji">🏆</div>
+    <div class="small">YOUR LANGUAGE PROFILE</div>
+    <h2 id="headline"></h2>
+    <p id="tagline" class="small"></p>
+    <div id="topTags"></div>
+  </div>
+  <div class="panel">
+    <h2>🧭 你的语言匹配 TOP 5</h2>
+    <p class="small">分数表示本次答案与不同学习路径的相对契合度，不代表语言难度。</p>
+    <div id="rankings"></div>
+  </div>
+  <div class="panel result-card">
+    <h2>🔬 你的思维画像</h2>
+    <div id="profile"></div>
+  </div>
+  <div class="panel result-card">
+    <h2>📚 给你的学习建议</h2>
+    <div id="advice"></div>
+  </div>
+  <div class="panel result-card">
+    <h2>🌱 你的隐藏优势</h2>
+    <div id="hiddenSide"></div>
+  </div>
+  <div class="panel">
+    <h2>🗺️ 结果说明</h2>
+    <p class="small">语言匹配不是命运判决。请把结果当作选课和制定学习计划的参考，而不是对自身能力的限制。</p>
+    <div class="actions result-actions">
+      <button class="primary" onclick="window.print()">保存 / 打印结果</button>
+      <button class="secondary" onclick="restart()">重新测试</button>
+    </div>
+  </div>
+</section>
+<div class="footer">☕ 马克杯 · 思维测试 ｜ 不收集个人信息</div>
+</div>
+
+<script>
+const questions = [
+["遇到一个完全陌生、暂时无法理解的问题，你通常会？",[
+["先拆成几个部分，逐一分析逻辑","logic"],
+["凭直觉先猜，再寻找证据验证","explore"],
+["先了解背景，以及人与人之间的关系","culture"],
+["尝试几种方法，边做边修正","explore"],
+["先观察，不急着下结论","detail"]]],
+["学一个新技能时，什么最能让你有成就感？",[
+["终于弄懂了背后的规则","logic"],
+["做出来的东西有自己的风格","culture"],
+["能马上拿去和别人交流","social"],
+["发现以前没注意到的新可能","explore"],
+["一次比一次准确、熟练","detail"]]],
+["听一段听不懂的外语，你最先注意到什么？",[
+["句子的节奏和旋律","sound"],
+["发音里细微的区别","detail"],
+["说话人的情绪和语气","emotion"],
+["反复出现的词和句型","logic"],
+["它让我联想到什么文化或场景","culture"]]],
+["朋友突然情绪低落，你通常会？",[
+["帮对方分析原因和解决方案","logic"],
+["先陪着对方，让对方把情绪说出来","emotion"],
+["想办法转移注意力，做点有趣的事","social"],
+["安静观察，等对方愿意开口","detail"],
+["用新角度帮对方重新理解这件事","explore"]]],
+["面对一项没有明确标准答案的任务，你会？",[
+["先建立一套评判标准","logic"],
+["边尝试边调整","explore"],
+["找人讨论，从不同观点里找灵感","social"],
+["参考成熟案例，尽量降低失误","detail"],
+["优先考虑它表达的意义和感受","culture"]]],
+["你更喜欢哪种学习材料？",[
+["体系清楚、规则完整的教材","logic"],
+["真实对话、播客和影视片段","sound"],
+["有故事、有历史背景的内容","culture"],
+["可以互动、马上获得反馈的练习","social"],
+["开放式任务，允许自己探索","explore"]]],
+["如果要记住一串新词汇，你更倾向于？",[
+["按词根、词缀或语法规律归类","logic"],
+["大声读出来，记住声音","sound"],
+["把词放进故事和具体情境里","culture"],
+["和别人对话时反复使用","social"],
+["做卡片、联想图或记忆实验","explore"]]],
+["你做决定时，最容易相信哪一种依据？",[
+["清晰的逻辑和证据","logic"],
+["过去的经验和可靠的方法","detail"],
+["内心的感受与价值判断","emotion"],
+["多听几个人的看法，再综合判断","social"],
+["直觉，以及对新可能性的感知","explore"]]],
+["你觉得一场对话什么时候最有意思？",[
+["观点交锋，最后把问题说清楚","logic"],
+["彼此接住情绪，产生共鸣","emotion"],
+["轻松自然，话题不断变化","social"],
+["聊到平时不容易谈的深层问题","culture"],
+["出现意料之外的新观点","explore"]]],
+["你在陌生人聚会上的典型状态是？",[
+["先观察气氛，找到合适时机再说话","detail"],
+["主动开启话题，认识新朋友","social"],
+["更愿意听别人讲有趣的经历","culture"],
+["和一两个人聊深一点，比四处寒暄舒服","emotion"],
+["看现场感觉，可能突然变得健谈","explore"]]],
+["学语言时，如果语法规则很多，你会？",[
+["很开心，规则能让我建立系统","logic"],
+["只学够用的部分，先开始说","social"],
+["用例句和情境慢慢体会","culture"],
+["反复练习到准确为止","detail"],
+["先抓整体感觉，不想太早被规则束缚","sound"]]],
+["如果你发音不够标准，你最可能？",[
+["找出具体音素问题，逐一纠正","detail"],
+["多听母语者，模仿语调和节奏","sound"],
+["先大胆开口，沟通成功更重要","social"],
+["担心表达失真，会花时间练到满意","emotion"],
+["尝试不同方法，找到适合自己的路径","explore"]]],
+["你更容易被什么样的作品吸引？",[
+["结构精巧、伏笔严密的故事","logic"],
+["语言优美、声音有感染力的作品","sound"],
+["人物关系复杂、情感浓烈的故事","emotion"],
+["反映社会、历史与文化的作品","culture"],
+["形式新颖、打破常规的作品","explore"]]],
+["当别人误解了你的意思，你通常会？",[
+["重新组织论点，把逻辑说清楚","logic"],
+["换一种更自然、更口语的说法","social"],
+["解释自己的真实感受和动机","emotion"],
+["举具体例子，让对方理解语境","culture"],
+["换个比喻或全新的表达方式","explore"]]],
+["你最难忍受哪种学习体验？",[
+["规则前后矛盾，讲不清原因","logic"],
+["一直听讲，却没有机会开口","social"],
+["练习机械重复，毫无情境","culture"],
+["努力了，却不知道哪里错","detail"],
+["每一步都被规定，不能自由尝试","explore"]]],
+["旅行到陌生国家，你最想先做什么？",[
+["研究交通、地图和当地运作方式","logic"],
+["和当地人聊天，观察他们怎么说话","social"],
+["逛博物馆、旧街区，了解历史","culture"],
+["听当地音乐，感受语言的声音","sound"],
+["随便走走，看看会发生什么","explore"]]],
+["一件事做得不顺时，你更常出现哪种反应？",[
+["检查步骤，找出错误环节","detail"],
+["换个方法，别在同一条路上耗着","explore"],
+["找人聊聊，听听不同意见","social"],
+["容易受挫，因为我希望把事情做好","emotion"],
+["先放一放，等思路自然清晰","sound"]]],
+["你更偏爱怎样的表达方式？",[
+["简洁、准确、没有歧义","detail"],
+["有节奏、有韵律，读起来舒服","sound"],
+["有温度，能传达情绪的细微变化","emotion"],
+["有层次，能表达复杂的思想","logic"],
+["生动灵活，可以根据对象变化","social"]]],
+["你理解一个文化习惯时，会？",[
+["先问它在历史中如何形成","culture"],
+["分析它背后的社会规则与逻辑","logic"],
+["观察人们实际怎么做，而非只看解释","detail"],
+["关注这个习惯对当事人的情感意义","emotion"],
+["比较不同文化，寻找有趣的差异","explore"]]],
+["在团队合作里，你更自然地承担什么角色？",[
+["梳理目标、安排步骤","logic"],
+["协调气氛，让大家愿意交流","social"],
+["检查细节、确保结果可靠","detail"],
+["提出新点子，打开新方向","explore"],
+["留意成员感受，处理微妙关系","emotion"]]],
+["如果一门语言有很多固定表达和礼貌层级，你会？",[
+["弄清每个表达对应的规则和场景","logic"],
+["觉得这些细节很有意思，能体现关系","culture"],
+["担心说错，想先练熟再使用","detail"],
+["先学最常用的，之后再慢慢补充","social"],
+["想知道母语者在真实场景里怎么使用","explore"]]],
+["你希望学会一门语言后，最先获得什么能力？",[
+["阅读复杂材料，准确理解信息","detail"],
+["自然地和人聊天、建立关系","social"],
+["读文学、看电影，感受原文的美","sound"],
+["理解另一种社会和文化的思维方式","culture"],
+["用它表达自己独特的想法","emotion"]]],
+["当一个词在不同语境里意思不同，你会？",[
+["整理它的不同用法和语法搭配","logic"],
+["多听例句，形成语感","sound"],
+["记住每个情境中的真实对话","social"],
+["研究它背后的文化含义","culture"],
+["享受这种灵活性，试着自己造句","explore"]]],
+["你更愿意接受哪一种纠错方式？",[
+["直接指出错误，并解释规则","detail"],
+["示范正确说法，让我跟着模仿","sound"],
+["自然地重述我的话，不打断交流","social"],
+["说明这个说法在不同情境里的感觉","culture"],
+["让我自己发现问题，再试一次","explore"]]],
+["当你想长期坚持一件事，什么最能支撑你？",[
+["清晰的计划和可衡量的进步","logic"],
+["有人一起学，能交流成果","social"],
+["内容触动我，让我产生情感连接","emotion"],
+["不断发现新东西，不觉得枯燥","explore"],
+["看到自己逐渐变得熟练、准确","detail"]]]
+];
+
+const traits={
+logic:["结构化思维","你喜欢拆解规律、整理信息，让复杂的东西变得清楚。"],
+sound:["声音与语感","你容易注意节奏、发音、旋律和语言的听感。"],
+social:["互动驱动","交流、反馈和真实使用容易让你保持动力。"],
+explore:["探索倾向","你愿意尝试新方法，也能接受边做边调整。"],
+culture:["文化感知","你重视背景、语境、历史与人际关系的意义。"],
+detail:["细节与准确","你关注准确性，愿意反复修正并打磨细节。"],
+emotion:["情绪表达","你在意表达是否传递了真实感受与细微差别。"]
+};
+
+const languages={
+"德语":{d:["logic","detail"],desc:"你可能喜欢规则清楚、结构可拆解的学习路径。德语的格、词序和构词规律，能给你明确的分析抓手。",tip:"适合系统学习、语法拆解与循序渐进的练习。"},
+"法语":{d:["sound","culture","detail"],desc:"你可能对声音细节、表达层次和文化语境比较敏感。法语的连诵、节奏和语域差异，适合你精细打磨。",tip:"适合听辨训练、朗读模仿、文本与文化结合的学习。"},
+"西班牙语":{d:["social","sound","explore"],desc:"你可能更享受开口、互动和快速把语言用起来。西班牙语的拼读规律相对直观，适合通过交流建立信心。",tip:"适合对话练习、情境任务、跟读与高频输出。"},
+"葡萄牙语":{d:["sound","emotion","culture"],desc:"你可能对语音韵味、情绪表达和文化氛围有较强兴趣。葡萄牙语的声音特点和音乐文化，适合你边听边体会。",tip:"适合音乐、播客、情境听力和情感表达练习。"},
+"意大利语":{d:["sound","emotion","social"],desc:"你可能喜欢有旋律感、表现力强且适合大声说出来的语言。意大利语的节奏与语音特点，可能让口语练习更有趣。",tip:"适合朗读、配音、歌曲、短对话和角色扮演。"},
+"日语":{d:["culture","detail","emotion"],desc:"你可能擅长观察语境、关系距离和表达中的细微差别。日语的敬语、语用习惯与语境依赖性，能满足你对细节的兴趣。",tip:"适合情境对话、语域对比、影视材料和真实语用分析。"},
+"韩语":{d:["social","culture","detail"],desc:"你可能愿意留意说话对象、关系和场合，并通过模仿与反复使用建立熟练度。韩语的敬语体系和句尾表达值得细细探索。",tip:"适合生活场景对话、听说循环、句尾语气和关系语境练习。"},
+"俄语":{d:["logic","detail","explore"],desc:"你可能不排斥挑战复杂系统，并愿意通过规律和练习逐步掌握难点。俄语的词形变化和动词体能给你持续的分析目标。",tip:"适合分阶段攻克语法、做对比表，并配合高频例句练习。"}
+};
+
+let current=0;
+let answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+
+function startQuiz(){
+  $("intro").classList.add("hidden");
+  $("quiz").classList.remove("hidden");
+  renderQuestion();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderQuestion(){
+  const q=questions[current];
+  $("counter").textContent=String(current+1).padStart(2,"0")+" / "+questions.length;
+  $("qnum").textContent="Q"+String(current+1).padStart(2,"0")+" / "+questions.length;
+  $("progress").style.width=((current+1)/questions.length*100)+"%";
+  $("question").textContent=q[0];
+
+  const box=$("options");
+  box.innerHTML="";
+
+  q[1].forEach((item,i)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="option"+(answers[current]===i?" selected":"");
+
+    const letter=document.createElement("span");
+    letter.className="letter";
+    letter.textContent="ABCDE"[i];
+
+    const text=document.createElement("span");
+    text.className="otext";
+    text.textContent=item[0];
+
+    button.append(letter,text);
+    button.onclick=()=>{
+      answers[current]=i;
+      renderQuestion();
+    };
+    box.appendChild(button);
+  });
+
+  $("prev").style.visibility=current===0?"hidden":"visible";
+  $("next").textContent=current===questions.length-1?"查看我的结果 →":"下一题 →";
+}
+
+function move(direction){
+  if(direction===1 && answers[current]===null){
+    alert("这题还没选答案哦～");
+    return;
+  }
+  if(direction===1 && current===questions.length-1){
+    showResult();
+    return;
+  }
+  current=Math.max(0,Math.min(questions.length-1,current+direction));
+  renderQuestion();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function calculate(){
+  const scores={logic:0,sound:0,social:0,explore:0,culture:0,detail:0,emotion:0};
+
+  answers.forEach((answer,i)=>{
+    if(answer!==null){
+      const dimension=questions[i][1][answer][1];
+      scores[dimension]++;
+    }
+  });
+
+  const results=Object.entries(languages).map(([name,info])=>{
+    const average=info.d.reduce((sum,d)=>sum+scores[d],0)/info.d.length;
+    return {name,average};
+  }).sort((a,b)=>b.average-a.average);
+
+  const max=Math.max(...results.map(r=>r.average),1);
+
+  results.forEach(r=>{
+    r.score=Math.round(60+40*r.average/max);
+  });
+
+  return {scores,results};
+}
+
+function showResult(){
+  const {scores,results}=calculate();
+  const winner=results[0];
+  const info=languages[winner.name];
+
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+
+  $("headline").textContent="你与「"+winner.name+"」的学习路径最契合";
+  $("tagline").textContent="你的选择倾向："+topTraits(scores,3);
+
+  $("topTags").innerHTML=results.slice(0,3).map((r,i)=>
+    '<span class="tag">TOP '+(i+1)+" · "+r.name+"</span>"
+  ).join("");
+
+  $("rankings").innerHTML=results.slice(0,5).map((r,i)=>
+    '<div class="rankrow">'+
+      '<div class="rankname">'+(i+1)+'. '+r.name+'</div>'+
+      '<div class="rankbar"><div class="rankfill" style="width:'+r.score+'%"></div></div>'+
+      '<div class="ranknum">'+r.score+'</div>'+
+    '</div>'
+  ).join("");
+
+  const strongest=Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,3);
+
+  $("profile").innerHTML=
+    '<div>'+strongest.map(([key])=>'<span class="tag">'+traits[key][0]+'</span>').join("")+'</div>'+
+    '<p>'+info.desc+'</p><ul>'+
+    strongest.map(([key])=>'<li><b>'+traits[key][0]+'：</b>'+traits[key][1]+'</li>').join("")+
+    '</ul>';
+
+  $("advice").innerHTML=
+    '<p>'+info.tip+'</p><ul>'+
+    '<li>每次设一个小目标：记住8个词、听懂一分钟对话，或完成5句输出。</li>'+
+    '<li>每周同时安排输入与输出。听读帮助建立感觉，说写帮助发现盲点。</li>'+
+    '<li>选择真正感兴趣的主题作为学习材料，不要只靠意志力硬啃教材。</li>'+
+    '</ul>';
+
+  const second=results[1];
+  $("hiddenSide").innerHTML=
+    '<p>你的第二匹配语言是 <b>'+second.name+'</b>。'+
+    languages[second.name].desc+'</p>'+
+    '<p>不妨分别体验两种语言的入门课程一周，再决定把时间投向哪里。'+
+    '结果反映的是可能更合拍的学习路径，不代表你只能学哪种语言。</p>';
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function topTraits(scores,count){
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1])
+    .slice(0,count).map(([key])=>traits[key][0]).join("、");
+}
+
+function restart(){
+  current=0;
+  answers=Array(questions.length).fill(null);
+  $("result").classList.add("hidden");
+  $("intro").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
